@@ -55,14 +55,10 @@ locals {
 # ttl : The TTL of the record set. Defaults to 3600.
 # --------------------------------------------------------
 
-
 resource "dns_a_record_set" "www" {
-  for_each = {
-    for key, value in local.json_data :
-    key => value
-  }
-  zone      = each.value.zone
-  name      = var.name
-  addresses = each.value.addresses
-  ttl       = each.value.ttl
+  count = length(local.json_files)
+  zone      = local.json_data[count.index].zone
+  name      = trimsuffix(basename(tolist(local.json_files)[count.index]),".json")
+  addresses = local.json_data[count.index].addresses
+  ttl       = local.json_data[count.index].ttl
 }
