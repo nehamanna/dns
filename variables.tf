@@ -9,7 +9,6 @@ variable "server" {
 }
 
 variable "key_secret" {
-  default     = "3KpJ/QuZEGbxJJmT2AyNUYCrHBNZmoNxT1NW2fgWZrQ="
   type        = string
   description = "(Requried) Key secret used to authenticate with the DNS server"
 }
