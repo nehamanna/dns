@@ -9,12 +9,14 @@ variable "server" {
 }
 
 variable "key_secret" {
+  sensitive   = true
   type        = string
   description = "(Requried) Key secret used to authenticate with the DNS server"
 }
 
 variable "key_name" {
   type        = string
+  sensitive   = true
   default     = "rndc-key."
   description = "(Requried) Name of the key that will be used for authentication with the DNS server"
 }
